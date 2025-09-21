@@ -1,0 +1,69 @@
+[
+  {
+    "id": 1,
+    "name": "Zinc",
+    "forms": [
+      { "name": "Zinc Picolinate", "quality": "high" },
+      { "name": "Zinc Citrate", "quality": "high" },
+      { "name": "Zinc Oxide", "quality": "low" }
+    ],
+    "sports": ["Wrestling", "Bodybuilding"],
+    "description": "Zinc is an essential mineral that supports immune function and athletic performance.",
+    "studies": [
+      {
+        "title": "Effect of zinc supplementation on wrestlers",
+        "link": "https://pubmed.ncbi.nlm.nih.gov/16648789/"
+      }
+    ],
+    "products": [
+      {
+        "brand": "Now Foods",
+        "form": "Zinc Picolinate",
+        "price": 12.50,
+        "link": "https://example.com/product1"
+      },
+      {
+        "brand": "Solgar",
+        "form": "Zinc Citrate",
+        "price": 15.90,
+        "link": "https://example.com/product2"
+      },
+      {
+        "brand": "Generic",
+        "form": "Zinc Oxide",
+        "price": 5.00,
+        "link": "https://example.com/product3"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Magnesium",
+    "forms": [
+      { "name": "Magnesium Citrate", "quality": "high" },
+      { "name": "Magnesium Oxide", "quality": "low" }
+    ],
+    "sports": ["Running", "Cycling"],
+    "description": "Magnesium is important for muscle contraction, relaxation, and energy metabolism.",
+    "studies": [
+      {
+        "title": "Magnesium supplementation and exercise performance",
+        "link": "https://pubmed.ncbi.nlm.nih.gov/11283434/"
+      }
+    ],
+    "products": [
+      {
+        "brand": "Doctor's Best",
+        "form": "Magnesium Citrate",
+        "price": 18.40,
+        "link": "https://example.com/product4"
+      },
+      {
+        "brand": "Generic",
+        "form": "Magnesium Oxide",
+        "price": 6.50,
+        "link": "https://example.com/product5"
+      }
+    ]
+  }
+]
