@@ -14,4 +14,11 @@ object JsonHelper {
         val type = object : TypeToken<List<Supplement>>() {}.type
         return Gson().fromJson(json, type)
     }
+
+    fun loadSports(context: Context): List<String> {
+        val json = context.assets.open("sports.json").bufferedReader().use { it.readText() }
+        val gson = Gson()
+        return gson.fromJson(json, object : TypeToken<List<String>>() {}.type)
+    }
+
 }

@@ -21,7 +21,7 @@ data class Supplement(
     val id: Int,
     val name: String,
     val forms: List<Form>,
-    val sport: List<String>,
+    val sports: List<String>,
     val description: String,
     val studies: List<Study>,
     val products: List<Product>
