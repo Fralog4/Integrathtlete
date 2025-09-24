@@ -1,0 +1,11 @@
+syntax= "proto3";
+
+option java_package= "com.app.integrathlete";
+option java_multiple_files = true;
+
+message UserPreferences {
+    string sport = 1;
+    int32 frequency = 2;
+    float weightKg = 3;
+    int32 heightCm = 4;
+}
