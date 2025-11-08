@@ -16,7 +16,8 @@ import com.app.integrathlete.repository.UserProfileViewModelFactory
 
 @Composable
 fun SupplementSuggestionsScreen(
-    supplements: List<Supplement>
+    supplements: List<Supplement>,
+    onItemClick: (Supplement) -> Unit
 ) {
     val context = LocalContext.current
     val viewModel: UserProfileViewModel = viewModel(factory = UserProfileViewModelFactory(context))
@@ -24,6 +25,17 @@ fun SupplementSuggestionsScreen(
     val userSport = userPrefs.sport
 
     val suggestedSupplements = supplements.filter { it.sports.contains(userSport) }
+
+    if (userPrefs.sport.isBlank()) {
+        Box(
+            modifier = Modifier.fillMaxSize().padding(16.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Text("Per favore, imposta il tuo sport nel profilo per ricevere suggerimenti.")
+        }
+        return // Esce dalla funzione per non mostrare il resto
+    }
+
 
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         Text(
@@ -44,7 +56,8 @@ fun SupplementSuggestionsScreen(
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 items(suggestedSupplements) { supplement ->
-                    Card(
+                    ElevatedCard(
+                        onClick = { onItemClick(supplement) },
                         modifier = Modifier.fillMaxWidth(),
                         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
                     ) {

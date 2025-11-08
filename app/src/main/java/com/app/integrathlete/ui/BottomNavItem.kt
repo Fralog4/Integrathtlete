@@ -27,13 +27,13 @@ import com.app.integrathlete.model.SupplementViewModel
 import com.app.integrathlete.model.UserProfileViewModel
 import com.app.integrathlete.repository.UserPreferencesRepository
 import com.app.integrathlete.repository.UserProfileViewModelFactory
+import kotlinx.serialization.Serializable
 
 sealed class BottomNavItem(
     val route: String,
     val label: String,
     val icon: ImageVector
 ) {
-    object Sport : BottomNavItem("sport", "Sport", Icons.Default.FitnessCenter)
     object Supplements : BottomNavItem("supplements", "Integratori", Icons.AutoMirrored.Filled.ListAlt)
     object Favorites : BottomNavItem("favorites", "Preferiti", Icons.Default.Favorite)
 
@@ -63,7 +63,6 @@ fun MainScreenWithBottomNav(
                 ).value?.destination?.route?.substringBefore("/")
 
                 listOf(
-                    BottomNavItem.Sport,
                     BottomNavItem.Suggestions,
                     BottomNavItem.Supplements,
                     BottomNavItem.Favorites,
@@ -87,23 +86,18 @@ fun MainScreenWithBottomNav(
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = BottomNavItem.Sport.route,
+            startDestination = BottomNavItem.Suggestions.route,
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(BottomNavItem.Suggestions.route) {
                 SupplementSuggestionsScreen(
-                    supplements = allSupplements
-                )
-            }
-
-            composable(BottomNavItem.Sport.route) {
-                SportSelectionScreen(
-                    sports = sportList,
-                    onSportSelected = { sport ->
-                        navController.navigate("supplement_list/$sport")
+                    supplements = allSupplements,
+                    onItemClick= {selected ->
+                        navController.navigate("supplement_detail/${selected.id}")
                     }
                 )
             }
+
 
             composable(BottomNavItem.Supplements.route) {
                 SupplementList(
