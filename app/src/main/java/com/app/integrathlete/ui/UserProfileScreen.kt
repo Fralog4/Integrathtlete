@@ -8,7 +8,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.app.integrathlete.model.UserProfileViewModel
-import com.app.integrathlete.repository.UserProfileViewModelFactory
 
 @Composable
 fun UserProfileScreen(
@@ -17,9 +16,7 @@ fun UserProfileScreen(
     val context = LocalContext.current
 
     // Factory manuale
-    val viewModel: UserProfileViewModel = viewModel(
-        factory = UserProfileViewModelFactory(context)
-    )
+    val viewModel: UserProfileViewModel = hiltViewModel()
 
     val userPrefs by viewModel.userPrefs.collectAsState()
 

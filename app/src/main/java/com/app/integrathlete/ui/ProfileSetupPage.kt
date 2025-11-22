@@ -30,7 +30,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.app.integrathlete.model.UserProfileViewModel
-import com.app.integrathlete.repository.UserProfileViewModelFactory
 
 @Composable
 fun ProfileSetupPage(

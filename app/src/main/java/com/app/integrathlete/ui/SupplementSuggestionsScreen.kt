@@ -12,7 +12,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.app.integrathlete.model.Supplement
 import com.app.integrathlete.model.UserProfileViewModel
-import com.app.integrathlete.repository.UserProfileViewModelFactory
 
 @Composable
 fun SupplementSuggestionsScreen(
@@ -20,7 +19,7 @@ fun SupplementSuggestionsScreen(
     onItemClick: (Supplement) -> Unit
 ) {
     val context = LocalContext.current
-    val viewModel: UserProfileViewModel = viewModel(factory = UserProfileViewModelFactory(context))
+    val viewModel: UserProfileViewModel = hiltViewModel()
     val userPrefs by viewModel.userPrefs.collectAsState()
     val userSport = userPrefs.sport
 

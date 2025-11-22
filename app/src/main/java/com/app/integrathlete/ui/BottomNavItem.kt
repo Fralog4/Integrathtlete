@@ -26,7 +26,6 @@ import com.app.integrathlete.model.Supplement
 import com.app.integrathlete.model.SupplementViewModel
 import com.app.integrathlete.model.UserProfileViewModel
 import com.app.integrathlete.repository.UserPreferencesRepository
-import com.app.integrathlete.repository.UserProfileViewModelFactory
 import kotlinx.serialization.Serializable
 
 sealed class BottomNavItem(
@@ -51,7 +50,7 @@ fun MainScreenWithBottomNav(
     val navController = rememberNavController()
     val viewModel: SupplementViewModel = viewModel()
     val context = LocalContext.current
-    val userViewModel : UserProfileViewModel = viewModel(factory = UserProfileViewModelFactory(context))
+    val userViewModel: UserProfileViewModel = hiltViewModel()
 
     val sportList=  remember { JsonHelper.loadSports(context)}
 
