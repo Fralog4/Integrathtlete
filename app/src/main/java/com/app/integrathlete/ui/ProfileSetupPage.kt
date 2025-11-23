@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.app.integrathlete.model.UserProfileViewModel
 
@@ -37,7 +38,7 @@ fun ProfileSetupPage(
     sportsList: List<String> = emptyList() // passiamo lista sport caricata dal JSON
 ) {
     val context = LocalContext.current
-    val viewModel: UserProfileViewModel = viewModel(factory = UserProfileViewModelFactory(context))
+    val viewModel: UserProfileViewModel = hiltViewModel()
     // Stati per i campi
     var sport by remember { mutableStateOf(sportsList.firstOrNull() ?: "") }
     var frequency by remember { mutableStateOf(1) }
