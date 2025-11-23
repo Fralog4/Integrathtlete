@@ -14,8 +14,6 @@ fun UserProfileScreen(
     onFinish: () -> Unit
 ) {
     val context = LocalContext.current
-
-    // Factory manuale
     val viewModel: UserProfileViewModel = hiltViewModel()
 
     val userPrefs by viewModel.userPrefs.collectAsState()

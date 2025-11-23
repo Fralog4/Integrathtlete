@@ -2,11 +2,14 @@ package com.app.integrathlete.model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel // Import Hilt
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject // Import Inject
 
-class SupplementViewModel : ViewModel() {
+@HiltViewModel
+class SupplementViewModel @Inject constructor() : ViewModel() { // Aggiunto @Inject constructor()
 
     private val _favorites = MutableStateFlow<Set<Supplement>>(emptySet())
     val favorites: StateFlow<Set<Supplement>> = _favorites

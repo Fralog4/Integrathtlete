@@ -8,67 +8,72 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import com.app.integrathlete.R
 import com.app.integrathlete.model.Product
 import com.app.integrathlete.model.Supplement
-import androidx.compose.material.icons.outlined.FavoriteBorder
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.app.integrathlete.model.SupplementViewModel
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun SupplementDetailScreen(
-    supplement: Supplement, modifier: Modifier = Modifier
+    supplement: Supplement,
+    modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
 
-    val sortedProducts = supplement.sortedProducts()
+    // Calcoliamo i prodotti ordinati usando la funzione locale definita in basso
+    val sortedProducts = supplement.getSortedProducts()
 
     LazyColumn(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
         item {
             Text(
                 text = supplement.name,
-                style = MaterialTheme.typography.headlineMedium
+                style = MaterialTheme.typography.headlineMedium,
+                color = MaterialTheme.colorScheme.onSurface
             )
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
                 text = supplement.description,
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = "Available Forms",
-                style = MaterialTheme.typography.titleMedium
+                text = stringResource(R.string.detail_available_forms), // "Forme Disponibili"
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurface
             )
             Spacer(modifier = Modifier.height(8.dp))
 
             supplement.forms.forEach { form ->
                 Text(
                     text = "${form.name} (${form.quality})",
-                    style = MaterialTheme.typography.bodyMedium
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
 
             Spacer(modifier = Modifier.height(24.dp))
 
             Text(
-                text = "Scientific Studies",
-                style = MaterialTheme.typography.titleMedium
+                text = stringResource(R.string.detail_scientific_studies), // "Studi Scientifici"
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurface
             )
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -76,9 +81,9 @@ fun SupplementDetailScreen(
                 Text(
                     text = study.title,
                     style = MaterialTheme.typography.bodyMedium.copy(
-                        color = MaterialTheme.colorScheme.primary,
                         textDecoration = TextDecoration.Underline
                     ),
+                    color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.clickable {
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(study.link))
                         context.startActivity(intent)
@@ -90,8 +95,9 @@ fun SupplementDetailScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             Text(
-                text = "Consigliato per",
-                style = MaterialTheme.typography.titleMedium
+                text = stringResource(R.string.detail_recommended_for), // "Consigliato per"
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurface
             )
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -103,18 +109,26 @@ fun SupplementDetailScreen(
                 supplement.sports.forEach { sport ->
                     AssistChip(
                         onClick = {},
-                        label = { Text(text = sport, color = Color.Black) },
+                        label = {
+                            Text(
+                                text = sport,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        },
                         colors = AssistChipDefaults.assistChipColors(
-                            containerColor = Color(0xFFE0E0E0),
-                            labelColor = Color.Black
+                            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                            labelColor = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     )
                 }
             }
 
+            Spacer(modifier = Modifier.height(24.dp))
+
             Text(
-                text = "Recommended Products",
-                style = MaterialTheme.typography.titleMedium
+                text = stringResource(R.string.detail_recommended_products), // "Prodotti Consigliati"
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurface
             )
             Spacer(modifier = Modifier.height(8.dp))
         }
@@ -124,7 +138,10 @@ fun SupplementDetailScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 4.dp),
-                elevation = CardDefaults.cardElevation(2.dp)
+                elevation = CardDefaults.cardElevation(2.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surface
+                )
             ) {
                 Column(
                     modifier = Modifier
@@ -135,12 +152,14 @@ fun SupplementDetailScreen(
                         }) {
                     Text(
                         text = "${product.brand} - ${product.form}",
-                        style = MaterialTheme.typography.bodyLarge
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "Price: €${product.price}",
-                        style = MaterialTheme.typography.bodyMedium
+                        text = stringResource(R.string.detail_price, product.price), // Prezzo formattato
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             }
@@ -193,4 +212,21 @@ fun SupplementDetailScreenWithTopBar(
     }
 }
 
+// --- Funzione di utilità locale per ordinare i prodotti ---
+// Ordina per qualità della forma (High > Medium > Low) e poi per prezzo crescente
+private fun Supplement.getSortedProducts(): List<Product> {
+    // Mappa delle forme ad alta qualità per un accesso veloce
+    val highQualityForms = forms.filter { it.quality.equals("high", ignoreCase = true) }.map { it.name }
+    val mediumQualityForms = forms.filter { it.quality.equals("medium", ignoreCase = true) }.map { it.name }
 
+    return products.sortedWith(
+        compareByDescending<Product> { product ->
+            // Assegna un punteggio basato sulla qualità della forma del prodotto
+            when (product.form) {
+                in highQualityForms -> 2 // Priorità massima
+                in mediumQualityForms -> 1 // Priorità media
+                else -> 0 // Priorità bassa
+            }
+        }.thenBy { it.price } // A parità di qualità, vince il prezzo più basso
+    )
+}

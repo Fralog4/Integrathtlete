@@ -49,10 +49,9 @@ fun MainScreenWithBottomNav(
     allSupplements: List<Supplement>
 ) {
     val navController = rememberNavController()
-    val viewModel: SupplementViewModel = viewModel()
+    val viewModel: SupplementViewModel = hiltViewModel()
     val context = LocalContext.current
     val userViewModel: UserProfileViewModel = hiltViewModel()
-
     val sportList=  remember { JsonHelper.loadSports(context)}
 
     Scaffold(

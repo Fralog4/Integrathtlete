@@ -1,3 +1,47 @@
 <resources>
     <string name="app_name">Integrathlete</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome">Benvenuto su IntegrAthlete</string>
+    <string name="onboarding_discover">Scopri integratori per ogni sport</string>
+    <string name="onboarding_customize">Personalizza la tua esperienza</string>
+    <string name="onboarding_complete_profile">Completa il tuo profilo</string>
+    <string name="onboarding_next">Avanti</string>
+    <string name="onboarding_save_continue">Salva e continua</string>
+
+    <!-- Profile -->
+    <string name="profile_title">Profilo Utente</string>
+    <string name="profile_sport">Sport praticato</string>
+    <string name="profile_frequency">Frequenza (giorni/settimana)</string>
+    <string name="profile_weight">Peso</string>
+    <string name="profile_height">Altezza</string>
+    <string name="profile_unit">Unità</string>
+    <string name="profile_save">Salva</string>
+    <string name="profile_edit">Modifica profilo</string>
+    <string name="profile_days_per_week">%d giorni/settimana</string> <!-- Placeholder dinamico -->
+
+    <!-- Home / Navigation -->
+    <string name="nav_suggestions">Suggeriti</string>
+    <string name="nav_supplements">Integratori</string>
+    <string name="nav_favorites">Preferiti</string>
+    <string name="nav_profile">Profilo</string>
+
+    <!-- Suggestions Screen -->
+    <string name="suggestions_title">Integratori suggeriti per: %s</string>
+    <string name="suggestions_empty">Nessun integratore suggerito per lo sport \"%s\"</string>
+    <string name="suggestions_missing_profile">Per favore, imposta il tuo sport nel profilo per ricevere suggerimenti.</string>
+
+    <!-- Supplement Detail -->
+    <string name="detail_available_forms">Forme Disponibili</string>
+    <string name="detail_scientific_studies">Studi Scientifici</string>
+    <string name="detail_recommended_for">Consigliato per</string>
+    <string name="detail_recommended_products">Prodotti Consigliati</string>
+    <string name="detail_price">Prezzo: €%.2f</string>
+    <string name="detail_best_forms">Forme migliori: </string>
+
+    <!-- Favorites -->
+    <string name="favorites_empty">Nessun integratore salvato tra i preferiti.</string>
+
+    <!-- Errors -->
+    <string name="error_supplement_not_found">Supplemento non trovato</string>
 </resources>
