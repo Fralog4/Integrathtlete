@@ -30,7 +30,7 @@ class MainViewModel @Inject constructor(
 ) : AndroidViewModel(application) {
 
     private val _uiState = MutableStateFlow<MainUiState>(MainUiState.Loading)
-    val uiState: StateFlow<MainUiState> = _uiState.asStateFlow()
+    val uiState: StateFlow<MainUiState> = _uiState.asStateFlow() //check
 
     init {
         loadData()
